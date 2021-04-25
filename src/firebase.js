@@ -12,4 +12,19 @@ const firebaseApp = firebase.initializeApp({
 
 const db = firebaseApp.firestore();
 
+// function deleteAll() {
+//   let ref = db.collection("todos");
+
+//   db.collection("todos").onSnapshot((snapshot) => {
+//     snapshot.docs.forEach((doc) => {
+//       ref
+//         .doc(doc.id)
+//         .delete()
+//         .catch((error) => {
+//           console.log(error);
+//         });
+//     });
+//   });
+// }
+
 export default db;

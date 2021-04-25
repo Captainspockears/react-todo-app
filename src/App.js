@@ -6,44 +6,70 @@ import db from "./firebase";
 function App() {
   const [todos, setTodos] = useState([]);
   const [input, setInput] = useState("");
+  const [username, setUsername] = useState("");
+  const [warning, setWarning] = useState("");
 
   useEffect(() => {
     db.collection("todos").onSnapshot((snapshot) => {
-      setTodos(snapshot.docs.map((doc) => doc.data().todo));
+      setTodos(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          username: doc.data().name,
+          todo: doc.data().todo,
+        }))
+      );
     });
   }, []);
 
   const pushTodo = (event) => {
+    const flag = true;
     event.preventDefault();
-    if (input != "") {
+    if (input != "" && username != "") {
       db.collection("todos").add({
         todo: input,
+        name: username,
       });
       //setTodos([...todos, input]);
       setInput("");
+      setWarning("");
+    } else if (input != "") {
+      setWarning("Please type a name.");
+    } else if (username != "") {
+      setWarning("Please type your message.");
+    } else {
+      setWarning("Please type your name and message.");
     }
   };
 
   return (
     <div className="App">
-      <h1>React To-do list🚀</h1>
+      <h1>React-Chat</h1>
 
-      <div class="inputContainer">
+      <div className="name">
+        <p>Name:</p>
+        <input
+          value={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
+      </div>
+
+      <div className="todoContainer">
+        {todos.map((todo) => (
+          <Todo todo={todo} />
+        ))}
+      </div>
+
+      <div className="inputContainer">
         <form>
           <input
             value={input}
             onChange={(event) => setInput(event.target.value)}
           />
           <button type="submit" onClick={pushTodo}>
-            Add
+            Send
           </button>
+          <p>{warning}</p>
         </form>
-      </div>
-
-      <div class="todoContainer">
-        {todos.map((todo) => (
-          <Todo text={todo} />
-        ))}
       </div>
     </div>
   );

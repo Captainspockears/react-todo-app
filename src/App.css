@@ -1,38 +1,95 @@
 .App {
+  margin: auto;
+  padding: 10px;
+}
+
+.App > h1 {
+  margin-left: 10px;
+  color: rgb(117, 50, 179);
+}
+
+.name {
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+.name > p {
+  float: left;
+}
+
+.name > input {
+  width: 200px;
+  padding: 5px 12px;
+  border: 2px solid rgb(200, 183, 214);
+  outline: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.name > input:hover {
+  border: 2px solid rgb(117, 50, 179);
+}
+
+.todoContainer {
+  margin-left: 10px;
+  margin-right: 20px;
+  height: 500px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  background-color: rgb(200, 183, 214);
+  border: 2px solid rgb(117, 50, 179);
+  word-wrap: break-word;
+  padding: 10px;
+}
+
+.inputContainer {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.inputContainer > form {
+  top: 50%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.inputContainer > form > input {
+  margin: 10px;
+  width: 500px;
+  padding: 5px 12px;
+  box-sizing: border-box;
+  border: 2px solid rgb(200, 183, 214);
+  outline: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.inputContainer > form > input:hover {
+  border: 2px solid rgb(117, 50, 179);
+}
+
+.inputContainer > form > button {
+  margin: auto;
+  background-color: rgb(117, 50, 179);
   color: white;
+  border: none;
+  padding: 5px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  transition: all 0.2s ease-in-out;
 }
 
-.App-link {
-  color: #61dafb;
+.inputContainer > form > button:hover {
+  background-color: rgb(117, 50, 179);
+  color: white;
+  transform: scale(1.1);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.inputContainer > form > p {
+  color: rgb(117, 50, 179);
 }

@@ -1,0 +1,16 @@
+.todo {
+  margin: 10px;
+  display: flex;
+}
+
+.todo > h4 {
+  color: rgb(117, 50, 179);
+  float: left;
+  margin-right: 10px;
+}
+
+.todo > p {
+  margin-top: 21px;
+  word-wrap: break-word;
+  width: 95%;
+}
