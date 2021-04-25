@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Todo from "./Todo";
 import db from "./firebase";
+import firebase from "firebase";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -10,24 +11,26 @@ function App() {
   const [warning, setWarning] = useState("");
 
   useEffect(() => {
-    db.collection("todos").onSnapshot((snapshot) => {
-      setTodos(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          username: doc.data().name,
-          todo: doc.data().todo,
-        }))
-      );
-    });
+    db.collection("todos")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setTodos(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            username: doc.data().name,
+            todo: doc.data().todo,
+          }))
+        );
+      });
   }, []);
 
   const pushTodo = (event) => {
-    const flag = true;
     event.preventDefault();
     if (input != "" && username != "") {
       db.collection("todos").add({
         todo: input,
         name: username,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
       //setTodos([...todos, input]);
       setInput("");
