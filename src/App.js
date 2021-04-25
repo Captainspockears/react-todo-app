@@ -46,7 +46,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>React-Chat</h1>
+      <h1>React-Chat v1.2</h1>
 
       <div className="name">
         <p>Name:</p>
